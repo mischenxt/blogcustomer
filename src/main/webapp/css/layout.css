@@ -1,0 +1,102 @@
+@CHARSET "UTF-8";
+.index-header {
+    background-image: url(../images/th.jpg);
+}
+
+.bs-docs-footer {
+    background-color: #E5E5E5;
+    padding: 15px 0;
+}
+
+.mymargin {
+    margin: 4px 0;
+}
+
+.unshow {
+    display: none;
+}
+
+.bigplace {
+    margin: 5px 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.title-row-2 {
+    height: 2.4em;
+    line-height: 1.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.title-row-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.li-row-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-row-5 {
+    height: 6em;
+    line-height: 1.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.text-row-3 {
+    height: 3.6em;
+    line-height: 1.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.text-row-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*
+由于火狐浏览器不是webkit浏览器，不支持webkit属性
+如果想要实现多行文本溢出时省略的效果，就需要自己编写代码
+更多火狐浏览器多行文本溢出效果实现方法请参照
+https://jingyan.baidu.com/article/2a138328971e8c074a134f82.html
+*/
+/*使用css实现火狐浏览器多行文本溢出效果（在现有的基础上添加）*/
+/*.text-row-5::after{
+	content: "...";
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 0 20px 1px 45px;
+	background-color: white;
+}*/
+.gray {
+    color: #999;
+}
+
+body {
+    font-family: "微软雅黑", "黑体";
+}
+
+.btn-tag-gap {
+    margin-right: 2px
+}
+
+.entityContainer___2qvPy, .entityContainer___2qvPy * {
+    display: inline;
+}
+
+
+

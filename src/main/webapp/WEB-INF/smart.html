@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--edge浏览器H5兼容设置-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <!--360浏览器H5兼容设置-->
+    <meta content="webkit" name="renderer"/>
+    <title>popo酱的博客</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!--导入核心文件-->
+    <script src="../bootstrap3/js/holder.js"
+            th:src="@{bootstrap3/js/holder.js}"></script>
+    <link href="../bootstrap3/css/bootstrap.css"
+          rel="stylesheet" th:href="@{bootstrap3/css/bootstrap.css}" type="text/css">
+    <script src="../bootstrap3/jquery-1.9.1.min.js"
+            th:src="@{bootstrap3/jquery-1.9.1.min.js}"></script>
+    <script src="../bootstrap3/js/bootstrap.js"
+            th:src="@{bootstrap3/js/bootstrap.js}"></script>
+    <!-- 字体图标 -->
+    <link href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"
+          rel="stylesheet"
+          th:href="@{bootstrap3/font-awesome-4.7.0/css/font-awesome.css}"/>
+    <link href="../css/layout.css" rel="stylesheet"
+          th:href="@{css/layout.css}"/>
+    <script src="../js/myjs.js" th:src="@{js/myjs.js}"
+            type="text/javascript"></script>
+    <script src="../js/comm.js" th:src="@{js/comm.js}"
+            type="text/javascript"></script>
+</head>
+<body>
+<!--网页最上方的留白-->
+<header th:replace="template :: header">
+    <div class="container">
+			<span class="pull-right"> <small>Power by</small> <b>Smart</b>Blogs
+			</span>
+    </div>
+</header>
+<!--网页标题层-->
+<div class="index-header" th:replace="template :: top">
+    <div class="container">
+        <h1>
+            <b>popo酱的博客</b>
+            <small>——po就是主子，我是po奴才</small>
+        </h1>
+        <!--导航-->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="list.html">文章</a></li>
+            </ul>
+            <!--用户名\登出-->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <p class="navbar-text">用户：admin</p>
+                </li>
+                <li><a href="login.html">登出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <!--左侧主要内容-->
+        <div class="col-md-9">
+            <div class="bs-docs-section">
+                <h2 class="page-header">
+                    <span class="fa fa-skyatlas"></span> Smart推送
+                </h2>
+                <!--第一篇-->
+                <div class="panel panel-default" th:each="sat : ${smartArticle}">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <a href="#" th:text="${sat.title}">华人女性 AI 科学家申省梅加盟 AI
+                                        安防公司澎思科技，任职首席科学家</a>
+                                </h3>
+                                <h4>
+										<span th:utext="${sat.content}"> 3 月 19
+											日，澎思科技宣布前松下新加坡研究院副院长申省梅为首席科学家，同时宣布成立澎思新加坡研究院，专注人工智能技术和深度学习领域的研究，申省梅担任院长，负责研究院的团队建设和人工智能前沿技术的探索&nbsp;...&nbsp;澎思科技先后在去年
+											9 月和今年 1 月宣布了两轮融资，洪泰基金、IDG
+											资本等领投&nbsp;...&nbsp;加盟澎思科技前，申省梅是新加坡（松下）研究院副院长，领导超过 40
+											人的算法研究团队，累计专利 300 余项。 <span id="detail-instantview"></span>
+										</span>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <img
+                                        class="img-rounded img-responsive"
+                                        src="../images/img24.jpg"
+                                        th:src="@{images/img{num}.jpg(num=${sat.articleRandomDouble%30})}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a class="btn btn-info btn-xs btn-tag-gap"
+                                   href="list.html"
+                                   th:each="tag : ${sat.tags}" th:href="@{showList.do(tid=${tag.oId})}"
+                                   th:text="${tag.tagTitle}">歌曲</a> <a class="btn btn-info btn-xs btn-tag-gap"
+                                                                       href="list.html" th:remove="all">手机</a>
+                                <a class="btn btn-info btn-xs btn-tag-gap" href="list.html"
+                                   th:remove="all">耳机</a>
+                            </div>
+                            <div class="col-md-6">
+                                <small class="pull-right">信息获取自:<a href="https://readhub.cn"
+                                                                   target="_blank">https://readhub.cn</a></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--第二篇-->
+                <div class="panel panel-default" th:remove="all">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <a href="showSmart.do?aid=15">区块链：回归互联网的「流浪地球」</a>
+                                </h3>
+                                <h4>
+										<span>简单地将区块链的应用局限在数字货币是互联网思维的延续，并不能够给区块链行业的发展带来任何实质性的影响，相反还会把区块链的发展带入到困境里
+											...
+											作为一个新技术来讲，区块链并不具备颠覆互联网技术的实力，因为每一个技术的成熟都需要一个过程，况且当下的互联网行业的发展困境仅仅只是驱动力的缺失所导致的，并不是互联网行业本身出了问题
+											... 当 B
+											端时代来临的大背景下，互联网行业的发展开始从消费互联网时代转移到产业互联网时代，在这个过程当中，互联网行业的入局者们需要真正解决
+											B 端行业的固有痛点和难题，才能从根本上达成提升行业运行效率的目的。 <span
+                                                    id="detail-instantview"></span>
+										</span>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-rounded img-responsive" src="images/img2.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--第三篇-->
+                <div class="panel panel-default" th:remove="all">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <a href="showSmart.do?aid=14">奥迪下调全系车型官方指导价 最高降幅达 5.5 万元</a>
+                                </h3>
+                                <h4>
+										<span>3 月 19 日，网易汽车从官方获悉，由于 4 月 1 日我国增值税税率下调政策将正式实施，一汽
+											- 大众今日宣布，自 3 月 19 日起下调全系在售车型官方指导价 ... 此次官方指导价调整涵盖奥迪品牌全系在售车型，最大降幅达
+											5.5 万元 ... 关于调整后的官方指导价详情，请登陆一汽 - 大众奥迪官方网站或咨询当地经销商。 <span
+                                                    id="detail-instantview"></span>
+										</span>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-rounded img-responsive" src="images/img15.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--第四篇-->
+                <div class="panel panel-default" th:remove="all">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <a href="showSmart.do?aid=13">乐视网子公司「西藏乐视」股东变更：刘淑青卸任总经理</a>
+                                </h3>
+                                <h4>
+										<span>据企查查数据显示，3 月 13
+											日，乐视网董事长刘淑青卸任西藏乐视信息技术有限公司总经理职位&nbsp;...&nbsp;同时，原法定代表人韩金卸任，新任法人刘延峰；大股东从乐视网（天津）信息技术有限公司变更为乐视新媒体文化（天津）有限公司&nbsp;...&nbsp;西藏乐视网信息技术有限公司成立于
+											2013 年 12 月 10 日，注册资本 2 亿元人民币，乐视网信息技术（北京）股份有限公司 100%
+											持股，最终受益人和疑似实际控制人均为贾跃亭，持股 25.9%。 <span id="detail-instantview"></span>
+										</span>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-rounded img-responsive" src="images/img22.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--第五篇-->
+                <div class="panel panel-default" th:remove="all">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <a href="showSmart.do?aid=12">字节跳动正在搭建「直播大中台」</a>
+                                </h3>
+                                <h4>
+										<span>据报道，正在搭建「直播大中台」。目前，字节跳动的直播业务主要依托于抖音、西瓜视频和火山小视频三个短视频产品展开，而眼下，三个产品的直播技术和运营团队将被抽出、合并，组成一个新的「直播业务中台」，支撑字节跳动旗下的所有直播业务&nbsp;...&nbsp;字节跳动官方未对「直播中台」一事做出直接回应，但表示，「直播是产品中的一个模块，我们一直在不断进行优化调整。我们希望产品的各个模块，都能更好地服务视频创作者，提供更好的用户体验。」
+											<span id="detail-instantview"></span>
+										</span>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-rounded img-responsive" src="images/img11.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--第六篇-->
+                <div class="panel panel-default" th:remove="all">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <a href="showSmart.do?aid=11">vivo X27 Pro 已获入网许可证 配 6.72
+                                        寸显示屏</a>
+                                </h3>
+                                <h4>
+										<span>根据工信部最新公布的信息显示，vivo 旗下已经有型号为 V1836A/T
+											的新机拿到了入网许可证，并拥有 6.72 英寸显示屏和 4000
+											毫安时电池，所以结合此前曝光的参数规格，差不多可以确定便是前后摄像头皆为居中设计的 vivo X27 Pro ... 配
+											6.72 英寸显示屏此次在工信部拿到入网许可证的 vivo V1836A/T
+											虽然没有放出证件照，但还是公布了部分参数信息，包括配有 6.72 英寸显示屏和 4000 毫安时（典型值）电池等等 ...
+											根据此前曝光的 vivo X27 Pro 的规格信息显示，该机所配的显示屏相比 vivo X27 会增至 6.7
+											英寸，而屏占比则会升级为 93.16%，并拥有 20.5:9 纵横比例。 <span
+                                                    id="detail-instantview"></span>
+										</span>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-rounded img-responsive" src="images/img4.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--分页链接-->
+                <div>
+						<span><a
+                                class="btn btn-default"
+                                href="list.html"
+                                th:href="@{smartList.do(tid=${tid},title=${title},pageNum=${pi.pageNum-1})}">上一页</a></span>
+                    <span><a
+                            class="btn btn-default"
+                            href="list.html"
+                            th:href="@{smartList.do(tid=${tid},title=${title},pageNum=${pi.pageNum+1})}">下一页</a></span>
+                    <span>当前<span
+                            th:text="${pi.pageNum}">1</span>页，共<span th:text="${pi.total}">4</span>页，每页<span
+                            th:text="${pi.pageSize}">8</span>条
+						</span>
+                </div>
+            </div>
+        </div>
+        <!--左侧内容结束-->
+        <!--右侧内容开始-->
+        <div class="col-md-3" th:replace="template :: right">
+            <div class="bs-docs-section">
+                <h2 class="page-header">
+                    <span class="fa fa-thumbs-o-up"></span> 推荐阅读
+                </h2>
+                <!--搜索-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-heading">
+                        <h3>
+                            <span class="fa fa-search"></span> 文章搜索
+                        </h3>
+                    </li>
+                    <li class="list-group-item">
+                        <form action="list.html" class="form-inline" method="get">
+                            <input class="form-control" id="title" name="title" placeholder="请输入文章标题内容"
+                                   type="text">
+                            <button class="btn btn-default" type="submit">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+                <!--最新-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-heading">
+                        <h3>
+                            <span class="fa fa-calendar"></span> 最新内容
+                        </h3>
+                    </li>
+                    <li class="list-group-item li-row-1"><a href="article.html">《炉石传说》卡牌游戏系统介绍</a>
+                    </li>
+                    <li class="list-group-item li-row-1"><a href="article.html">《我不是药神》观后的反思</a>
+                    </li>
+                    <li class="list-group-item li-row-1"><a href="article.html">给大家推荐几款不错的耳机</a>
+                    </li>
+                    <li class="list-group-item li-row-1"><a href="article.html">王者荣耀好玩么</a>
+                    </li>
+                    <li class="list-group-item li-row-1"><a href="article.html">java好学不好学</a>
+                    </li>
+                </ul>
+                <!--评论-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-heading">
+                        <h3>
+                            <span class="fa fa-comment-o"></span> 评论最热
+                        </h3>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">我要支持markDown</a>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">《我不是药神》观后的反思</a>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">荒野大镖客：救赎2</a>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">人民空军，生日快乐！</a>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">mate20
+                        pro真不错了</a></li>
+                </ul>
+                <!--浏览-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-heading">
+                        <h3>
+                            <span class="fa fa-eye"></span> 浏览最多
+                        </h3>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">mate20
+                        pro真不错了</a></li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">荒野大镖客：救赎2</a>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">人民空军，生日快乐！</a>
+                    </li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">
+                        双11"车祸现场"</a></li>
+                    <li class="list-group-item  li-row-1"><a href="article.html">习近平将出席APEC第二十六次领导人非正式会议</a>
+                    </li>
+                </ul>
+                <!--分类-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-heading">
+                        <h3>
+                            <span class="fa fa-tag"></span> 分类标签
+                        </h3>
+                    </li>
+                    <li class="list-group-item"><a href="list.html?tid=12">八卦(6)</a></li>
+                    <li class="list-group-item"><a href="list.html?tid=49">演员(5)</a></li>
+                    <li class="list-group-item"><a href="list.html?tid=28">游戏(4)</a></li>
+                    <li class="list-group-item"><a href="list.html?tid=25">心情(3)</a></li>
+                    <li class="list-group-item"><a href="list.html?tid=53">新闻(5)</a></li>
+                </ul>
+                <!--链接-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-heading">
+                        <h3>
+                            <span class="fa fa-link"></span> 友情链接
+                        </h3>
+                    </li>
+                    <li class="list-group-item"><a href="http://www.163.com"
+                                                   target="_blank">网易</a></li>
+                    <li class="list-group-item"><a href="http://www.tedu.cn"
+                                                   target="_blank">达内</a></li>
+                    <li class="list-group-item"><a href="http://www.baidu.com"
+                                                   target="_blank">百度</a></li>
+                    <li class="list-group-item"><a href="http://cn.bing.com/"
+                                                   target="_blank">必应</a></li>
+                    <li class="list-group-item"><a href="http://www.qq.com"
+                                                   target="_blank">腾讯</a></li>
+                    <li class="list-group-item"><a href="http://www.jd.com"
+                                                   target="_blank">京东</a></li>
+                    <li class="list-group-item"><a href="http://www.taobao.com"
+                                                   target="_blank">淘宝</a></li>
+                    <li class="list-group-item"><a href="http://www.tmall.com"
+                                                   target="_blank">天猫</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--网页底部-->
+<footer class="bs-docs-footer" th:replace="template :: footer">
+    <div class="container">
+        <b> Copyright © 2018 Tedu.cn All Rights Reserved
+            京ICP备08000853号-56 <a href="http://www.tedu.cn/">达内时代科技集团有限公司</a>
+            版权所有
+        </b> <span class="pull-right"> <b>Version</b> 0.1.0
+			</span>
+    </div>
+</footer>
+</body>
+
+</html>

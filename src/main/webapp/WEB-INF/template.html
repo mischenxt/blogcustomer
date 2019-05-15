@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<header>
+    <div class="container">
+			<span class="pull-right"> <small>Power by</small> <b>Smart</b>Blogs
+			</span>
+    </div>
+</header>
+<div class="index-header" th:fragment="top">
+    <div class="container">
+        <h1>
+            <b th:text="${options.blogname}">popo酱的博客</b>
+            <small
+                    th:text="'——'+${options.blogvalue}">——po就是主子，我是po奴才!!!
+            </small>
+        </h1>
+        <!--导航-->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html" th:href="@{showIndex.do}">首页</a></li>
+                <li><a href="list.html" th:href="@{showList.do}">文章</a></li>
+                <li><a href="smart.html" th:href="@{smartList.do}">Smart</a></li>
+            </ul>
+            <!--用户名\登出-->
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${user!=null  }">
+                    <p class="navbar-text">
+                        用户：<span th:text="${user.userName}">admin</span>
+                    </p>
+                </li>
+                <li th:if="${user!=null}"><a href="login.html" th:href="@{logout.do}">登出</a></li>
+                <li th:if="${user==null}"><a href="login.html" th:href="@{logout.do}">登录</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-3" th:fragment="right">
+    <div class="bs-docs-section">
+        <h2 class="page-header">
+            <span class="fa fa-thumbs-o-up"></span> 推荐阅读
+        </h2>
+        <!--搜索-->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading">
+                <h3>
+                    <span class="fa fa-search"></span> 文章搜索
+                </h3>
+            </li>
+            <li class="list-group-item">
+                <form action="list.html" class="form-horizontal" method="post" th:action="@{showList.do}">
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <input class="form-control" id="title" name="title" placeholder="请输入文章标题"
+                                   type="text">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-default" type="submit">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+        <!--最新-->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading">
+                <h3>
+                    <span class="fa fa-calendar"></span> 最新内容
+                </h3>
+            </li>
+            <li class="list-group-item li-row-1" th:each="nl : ${newList}"><a
+                    href="article.html" th:href="@{showArticle.do(aid=${nl.oId})}" th:text="${nl.articleTitle}">《炉石传说》卡牌游戏系统介绍</a>
+            </li>
+            <li class="list-group-item li-row-1" th:remove="all"><a
+                    href="article.html">《我不是药神》观后的反思</a></li>
+            <li class="list-group-item li-row-1" th:remove="all"><a
+                    href="article.html">给大家推荐几款不错的耳机</a></li>
+            <li class="list-group-item li-row-1" th:remove="all"><a
+                    href="article.html">王者荣耀好玩么</a></li>
+            <li class="list-group-item li-row-1" th:remove="all"><a
+                    href="article.html">java好学不好学</a></li>
+        </ul>
+        <!--评论-->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading">
+                <h3>
+                    <span class="fa fa-comment-o"></span> 评论最热
+                </h3>
+            </li>
+            <li class="list-group-item  li-row-1" th:each="cl : ${commentList}"><a
+                    href="article.html" th:href="@{showArticle.do(aid=${cl.oId})}" th:text="${cl.articleTitle}">我要支持markDown</a>
+            </li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">《我不是药神》观后的反思</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">荒野大镖客：救赎2</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">人民空军，生日快乐！</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">mate20 pro真不错了</a></li>
+        </ul>
+        <!--浏览-->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading">
+                <h3>
+                    <span class="fa fa-eye"></span> 浏览最多
+                </h3>
+            </li>
+            <li class="list-group-item  li-row-1" th:each="vl : ${viewList}"><a
+                    href="article.html" th:href="@{showArticle.do(aid=${vl.oId})}" th:text="${vl.articleTitle}">mate20
+                pro真不错了</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">荒野大镖客：救赎2</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">人民空军，生日快乐！</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html"> 双11"车祸现场"</a></li>
+            <li class="list-group-item  li-row-1" th:remove="all"><a
+                    href="article.html">习近平将出席APEC第二十六次领导人非正式会议</a></li>
+        </ul>
+        <!--分类-->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading">
+                <h3>
+                    <span class="fa fa-tag"></span> 分类标签
+                </h3>
+            </li>
+            <li class="list-group-item" th:each="tl : ${tagList}"><a
+                    href="list.html?tid=12" th:href="@{showList.do(tid=${tl.oId})}"
+                    th:text="${tl.tagTitle}+'('+${tl.tagPublishedRefCount}+')'">八卦(6)</a></li>
+            <li class="list-group-item" th:remove="all"><a
+                    href="list.html?tid=49">演员(5)</a></li>
+            <li class="list-group-item" th:remove="all"><a
+                    href="list.html?tid=28">游戏(4)</a></li>
+            <li class="list-group-item" th:remove="all"><a
+                    href="list.html?tid=25">心情(3)</a></li>
+            <li class="list-group-item" th:remove="all"><a
+                    href="list.html?tid=53">新闻(5)</a></li>
+        </ul>
+        <!--链接-->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading">
+                <h3>
+                    <span class="fa fa-link"></span> 友情链接
+                </h3>
+            </li>
+            <li class="list-group-item" th:each="ll : ${linkList}"><a
+                    href="http://www.163.com" target="_blank" th:href="@{${ll.linkAddress}}" th:text="${ll.linkTitle}">网易</a>
+            </li>
+            <li class="list-group-item" th:remove="all"><a href="http://www.tedu.cn"
+                                                           target="_blank">达内</a></li>
+            <li class="list-group-item" th:remove="all"><a href="http://www.baidu.com"
+                                                           target="_blank">百度</a></li>
+            <li class="list-group-item" th:remove="all"><a href="http://cn.bing.com/"
+                                                           target="_blank">必应</a></li>
+            <li class="list-group-item" th:remove="all"><a href="http://www.qq.com"
+                                                           target="_blank">腾讯</a></li>
+            <li class="list-group-item" th:remove="all"><a href="http://www.jd.com"
+                                                           target="_blank">京东</a></li>
+            <li class="list-group-item" th:remove="all"><a href="http://www.taobao.com"
+                                                           target="_blank">淘宝</a></li>
+            <li class="list-group-item" th:remove="all"><a href="http://www.tmall.com"
+                                                           target="_blank">天猫</a></li>
+        </ul>
+    </div>
+</div>
+<footer class="bs-docs-footer">
+    <div class="container">
+        <b> Copyright © 2018 Tedu.cn All Rights Reserved
+            京ICP备08000853号-56 <a href="http://www.tedu.cn/">达内时代科技集团有限公司</a>
+            版权所有
+        </b> <span class="pull-right"> <b>Version</b> 0.2.0
+			</span>
+    </div>
+</footer>
+</body>
+</html>
